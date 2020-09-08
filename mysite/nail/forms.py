@@ -30,6 +30,7 @@ class NewUser(UserCreationForm): #יצירת משתמש חדש, נלקח מג'נ
                   'password1',
                   'password2',
                 )
+
         def save(self, commit=True):
             user = super(NewUser, self).save(commit=False)
             user.first_name = self.cleaned_data['first_name']
@@ -38,7 +39,6 @@ class NewUser(UserCreationForm): #יצירת משתמש חדש, נלקח מג'נ
 
             if commit:
                 user.save()
-
             return user
 
 

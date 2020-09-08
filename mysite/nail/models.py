@@ -15,6 +15,8 @@ class UserProfile(models.Model):
     def __str__(self):
         return self.user
 
+
 class Notifications(models.Model):
     receiver = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
     message = models.CharField(max_length=200)
+

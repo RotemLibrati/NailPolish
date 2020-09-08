@@ -2,7 +2,7 @@ from datetime import datetime
 from django.contrib.auth.models import User
 from django.db import models
 
-class User(models.Model):
+class Users(models.Model):
     user_id = models.CharField(max_length=50)
 
 class UserProfile(models.Model):
@@ -10,6 +10,7 @@ class UserProfile(models.Model):
     age = models.IntegerField(default=0)
     address = models.CharField(max_length=100, default="")
     last_met = models.DateTimeField(default=datetime(2000,1,1))
+    is_admin = models.BooleanField(default=False)
 
     def __str__(self):
         return self.user

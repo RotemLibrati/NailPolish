@@ -1,0 +1,20 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <h1>New User</h1>
+</head>
+<body>
+
+    <form action="{% url 'nail:new-user' %} " method="POST">
+        {% csrf_token %}
+        {{ user_form.as_p }}
+
+    <button type="submit"> Submit </button>
+    </form>
+
+</body>
+</html>

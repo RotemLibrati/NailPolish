@@ -5,4 +5,6 @@ app_name = 'nail'
 urlpatterns = [
     path('',views.index, name='index'),
     path('login/', views.login, name='login'),
+    path('new-user/', views.new_user, name='new-user'),
+    path('success/', views.success, name='success'),
 ]

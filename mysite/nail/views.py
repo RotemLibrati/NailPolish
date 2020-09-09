@@ -1,17 +1,15 @@
 from django.contrib.auth import authenticate
-from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.shortcuts import render, get_object_or_404, redirect
 import json
-# Create your views here.
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponseNotAllowed
 from django.urls import reverse
 
 from .forms import LoginForm, NewUser, ProfileForm
-from .models import Users, UserProfile
+from .models import User, UserProfile
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login
-
+from django.contrib.auth.models import AnonymousUser
 
 def index(request):
     context = {}
@@ -20,21 +18,17 @@ def index(request):
     return render(request, 'nail/index.html', context)
 
 
-def login(request):
+def login_view(request):
     if request.method == "POST":
-        print("before")
         form = LoginForm(request.POST)
-        print("after")
         if form.is_valid():
             user = authenticate(username=form.cleaned_data['user_name'], password=form.cleaned_data['password'])
             if user is not None:
                 login(request, user)
-                user = request.user
-                userprofile = UserProfile.object.get(user=user)
-                return HttpResponseRedirect(reverse('nail/index.html'))
+                return HttpResponseRedirect(reverse('nail:profile'))
     else:
         form = LoginForm()
-    context = {'form ': form}
+    context = {'form': form}
     return render(request, 'nail/login.html', context) #מועבר לדף זה לאחר לחיצה על התחברות בעמוד הקודם
 
 
@@ -52,9 +46,6 @@ def new_user(request):
 
 
 def new_profile(request, username):
-    # if request.user is None:
-    #     return HttpResponse("Not logged in")
-
     def attach_user(sender, **kwargs):
         userprofile = kwargs['instance']
         userprofile.user = user
@@ -72,6 +63,16 @@ def new_profile(request, username):
         user = User.objects.get(username=username)
         form = ProfileForm()
     return render(request, 'nail/new-profile.html', {'user': user, 'form': form})
+
+
+def profile(request):
+    if request.user is None or not request.user.is_authenticated:
+        return HttpResponse("Not logged in")
+    user = request.user
+    context ={user:'user'}
+    return render(request, 'nail/profile-details.html')
+
+
 
 
 

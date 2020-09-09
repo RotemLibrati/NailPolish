@@ -13,7 +13,7 @@ class UserProfile(models.Model):
     is_admin = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.user
+        return str(self.user)
 
 
 class Notifications(models.Model):

@@ -7,10 +7,6 @@ class LoginForm(forms.Form):
     user_name = forms.CharField(initial='')
     password = forms.CharField(widget=forms.PasswordInput(), initial='')
 
-class ProfileForm(forms.ModelForm):
-    class Meta:
-        model = UserProfile
-        fields = ('address', 'age')
 
 class UserForm(forms.ModelForm):
     class Meta:
@@ -18,7 +14,13 @@ class UserForm(forms.ModelForm):
         fields = ('first_name', 'last_name', 'email')
 
 
-class NewUser(UserCreationForm): #יצירת משתמש חדש, נלקח מג'נגו
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = ('address', 'age')
+
+
+class CompleteUserForm(UserCreationForm):  # create user - django
     class Meta:
         model = User
         fields = ('username',
@@ -27,10 +29,10 @@ class NewUser(UserCreationForm): #יצירת משתמש חדש, נלקח מג'נ
                   'email',
                   'password1',
                   'password2',
-                )
+                  )
 
         def save(self, commit=True):
-            user = super(NewUser, self).save(commit=False)
+            user = super(CompleteUserForm, self).save(commit=False)
             user.first_name = self.cleaned_data['first_name']
             user.last_name = self.cleaned_data['last_name']
             user.email = self.cleaned_data['email']
@@ -38,5 +40,3 @@ class NewUser(UserCreationForm): #יצירת משתמש חדש, נלקח מג'נ
             if commit:
                 user.save()
             return user
-
-

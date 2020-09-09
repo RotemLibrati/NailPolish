@@ -5,11 +5,13 @@ import json
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponseNotAllowed
 from django.urls import reverse
 
-from .forms import LoginForm, NewUser, ProfileForm
+from .forms import LoginForm, CompleteUserForm, ProfileForm
 from .models import User, UserProfile
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import AnonymousUser
+from django.contrib.sessions.models import Session
+
 
 def index(request):
     context = {}
@@ -34,13 +36,13 @@ def login_view(request):
 
 def new_user(request):
     if request.method == 'POST':
-        user_form = NewUser(request.POST)
+        user_form = CompleteUserForm(request.POST)
         if user_form.is_valid():
             user_form.save()
             user = get_object_or_404(User, username=user_form.cleaned_data['username'])
             return HttpResponseRedirect(reverse('nail:new-profile', args=[str(user.username)])) # לחיצה על כפתור submit תעביר אותי לקישור
     else: # מכניס אותי לדף עם הקישור למטה כי הוא עדיין לא זיהה form
-        user_form = NewUser()
+        user_form = CompleteUserForm()
         context = {'user_form': user_form}
         return render(request, 'nail/new-user.html', context)
 

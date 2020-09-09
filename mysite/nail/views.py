@@ -73,7 +73,11 @@ def profile(request):
     return render(request, 'nail/profile-details.html')
 
 
-
+def logout(request):
+    request.session.flush()
+    if hasattr(request, 'user'):
+        request.user = AnonymousUser()
+    return HttpResponseRedirect(reverse('nail:index'))
 
 
 def success(request):

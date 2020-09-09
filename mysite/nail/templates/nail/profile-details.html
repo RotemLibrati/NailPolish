@@ -2,8 +2,14 @@
 <html lang="en">
 
 <body>
+
+    {% if not user.is_authenticated %}
+        <li><a href="{% url 'nail:login' %}">Login</a><br>
+        <li><a href="{% url 'nail:new-user' %}">Registration</a><br>
+    {% endif %}
     <h1>Hello {{ user.first_name }} and welcome</h1>
-    <li><a href="{% url 'nail:login' %}">הזמנת תור</a><br>
+    <li><a href="{% url 'nail:login' %}">invite meeting</a><br>
+    <li><a href="{% url 'nail:logout' %}">Logout</a><br>
 
 
 </body>

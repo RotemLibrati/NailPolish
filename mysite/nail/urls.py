@@ -10,4 +10,6 @@ urlpatterns = [
     path('<str:username>/new-profile/', views.new_profile, name='new-profile'),
     path('profile/', views.profile, name='profile'),
     path('logout/', views.logout, name='logout'),
+    path('meeting/', views.meeting, name='meeting'),
+    path('not-success/', views.not_success, name='not-success'),
 ]

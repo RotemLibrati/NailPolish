@@ -70,7 +70,7 @@ def new_profile(request, username):
     else:
         user = User.objects.get(username=username)
         form = ProfileForm()
-        context = {'user': user, 'form': form}
+    context = {'user': user, 'form': form}
     return render(request, 'nail/new-profile.html', context)
 
 
@@ -140,5 +140,5 @@ def not_success(request):
     return render(request, 'nail/not-success.html')
 
 
-
-
+def pictures(request):
+    return render(request, 'nail/pictures.html')

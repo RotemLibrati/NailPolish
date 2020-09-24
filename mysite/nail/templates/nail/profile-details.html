@@ -7,10 +7,24 @@
         <li><a href="{% url 'nail:login' %}">Login</a><br>
         <li><a href="{% url 'nail:new-user' %}">Registration</a><br>
     {% endif %}
-    <h1>Hello {{ user.first_name }} and welcome</h1>
-    <li><a href="{% url 'nail:meeting' %}">invite meeting</a><br>
-    <li><a href="{% url 'nail:logout' %}">Logout</a><br>
-    <li><a href="{% url 'nail:pictures' %}">Pictures</a><br>
+    {% if user.is_authenticated %}
+        <h1>Hello {{ user.first_name }} and welcome</h1>
+        {% if up1.next_meeting %}
+            <script>
+                alert('You have meeting at {{ up1.next_meeting }}');
+            </script>
+        {% endif %}
+
+        <div>Your next meeting at {{ up1.next_meeting }}</div>
+        <li><a href="{% url 'nail:meeting' %}">invite meeting</a><br>
+        <li><a href="{% url 'nail:pictures' %}">Pictures</a><br>
+        <li><a href="https://www.instagram.com/meital1998/">Instagram</a></li>
+        <li><a href="{% url 'nail:logout' %}">Logout</a><br>
+
+        {% if up1.is_admin == True %}
+            <li><a href="{% url 'nail:meeting-admin' %}">Your meeting</a><br>
+        {% endif %}
+    {% endif %}
 
 
 

@@ -97,6 +97,11 @@
       </div>
     </div>
 </div>
+    {% if not user.is_authenticated %}
 <a href="{% url 'nail:index' %}" class="button alt">back </a>
+  {% endif %}
+  {% if user.is_authenticated %}
+<a href="{% url 'nail:profile' %}" class="button alt">back </a>
+  {% endif %}
 </body>
 </html>

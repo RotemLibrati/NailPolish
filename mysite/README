@@ -1,1 +1,4 @@
-python ./manage.py migrate --fake-initial
+py manage.py migrate --fake-initial
+
+        {% if user.next_meeting %}
+            <div>{{ user.first_name }}</div>

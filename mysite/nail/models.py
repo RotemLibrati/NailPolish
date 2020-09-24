@@ -12,6 +12,7 @@ class UserProfile(models.Model):
     age = models.IntegerField(default=0)
     address = models.CharField(max_length=100, default="")
     next_meeting = models.DateTimeField(default=datetime(2000,1,1))
+    exist_meeting = models.BooleanField(default=False)
     last_met = models.DateTimeField(default=datetime(2000,1,1))
     is_admin = models.BooleanField(default=False)
 

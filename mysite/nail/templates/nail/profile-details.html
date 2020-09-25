@@ -9,13 +9,14 @@
     {% endif %}
     {% if user.is_authenticated %}
         <h1>Hello {{ user.first_name }} and welcome</h1>
-        {% if up1.next_meeting %}
+        {% if up1.exist_meeting %}
             <script>
                 alert('You have meeting at {{ up1.next_meeting }}');
             </script>
         {% endif %}
-
-        <div>Your next meeting at {{ up1.next_meeting }}</div>
+        {% if up1.exist_meeting %}
+            <div>Your next meeting at {{ up1.next_meeting }}</div>
+        {% endif %}
         <li><a href="{% url 'nail:meeting' %}">invite meeting</a><br>
         <li><a href="{% url 'nail:pictures' %}">Pictures</a><br>
         <li><a href="https://www.instagram.com/meital1998/">Instagram</a></li>

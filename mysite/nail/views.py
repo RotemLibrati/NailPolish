@@ -109,47 +109,41 @@ def meeting(request):
             year = form.cleaned_data.get('year')
             hour = form.cleaned_data.get('hour')
             up1 = UserProfile.objects.get(user=request.user)
-            defult_date= datetime.strptime('01/01/20 00:00:00', '%m/%d/%y %H:%M:%S')
             if "_make-unique" in request.POST:
                 print(up1.exist_meeting)
-                #up1.next_meeting = defult_date
                 up1.exist_meeting = False
-                print("after")
-                print(up1.exist_meeting)
                 up1.save()
-                meet = Meeting(date=defult_date, user=up1)
-                meet.save()
+                meet = Meeting.objects.filter(user=up1).delete()
                 return render(request, 'nail/success.html')
-            if (month==2 and (day==29 or day==30 or day==31)):
+            if month == 2 and (day == 29 or day == 30 or day == 31):
                 orderly = False
                 return render(request, 'nail/not-success.html')
-            elif (month==4 and day == 31):
+            elif month == 4 and day == 31:
                 orderly = False
                 return render(request, 'nail/not-success.html')
-            elif (month == 6 and day ==31):
+            elif month == 6 and day == 31:
                 orderly = False
                 return render(request, 'nail/not-success.html')
-            elif (month == 9 and day == 31):
+            elif month == 9 and day == 31:
                 orderly = False
                 return render(request, 'nail/not-success.html')
-            elif ( month==11 and day == 31):
+            elif month == 11 and day == 31:
                 orderly = False
                 return render(request, 'nail/not-success.html')
-            elif up1.exist_meeting == True:
+            elif up1.exist_meeting:
                 orderly = False
                 return render(request, 'nail/not-success.html')
             else:
                 date = '{0}/{1}/{2} {3}'.format(month, day, year, hour)
                 datetime_object = datetime.strptime(date, '%m/%d/%y %H:%M:%S')
-                if(datetime_object<datetime.now()):
+                if datetime_object<datetime.now():
                     orderly=False
                     return render(request, 'nail/not-success.html')
                 up1.next_meeting = datetime_object
                 up1.exist_meeting = True
                 up1.save()
                 print(orderly)
-                if(orderly):
-                    print("in%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
+                if orderly:
                     meet = Meeting(date=datetime_object, user=up1)
                     meet.save()
                 return HttpResponseRedirect(reverse('nail:success'))

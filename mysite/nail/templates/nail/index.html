@@ -1,6 +1,9 @@
+{% extends 'nail/SubPage.html' %}
 
+{% block title %}
     <h1> שלום, הגעתם לאתר של מיטל סלבגו</h1>
-
+{% endblock %}
+{% block data %}
     {% if not user.is_authenticated %}
         <div><a href="{% url 'nail:login' %}">Login</a></div>
         <div><a href="{% url 'nail:new-user' %}">Registration</a></div>
@@ -8,12 +11,14 @@
     <div><a href="https://www.instagram.com/p/B7IUvMvBgi7/">Instagram</a></div>
     {% endif %}
     {% if user.is_authenticated %}
-        <div><a href="{% url 'nail:login' %}">Login</a></div>
-        <div><a href="{% url 'nail:new-user' %}">Registration</a></div>
+        <div><a href="{% url 'nail:login' %}" class="btn btn-primary btn-demo popup-vimeo">Login</a>
+        <a href="{% url 'nail:new-user' %}" class="btn btn-primary btn-learn" >Registration</a>
+
+            </div>
     {% endif %}
 
 
-
+{% endblock %}
 
 
 

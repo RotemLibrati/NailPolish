@@ -1,11 +1,15 @@
 <!DOCTYPE html>
+{% extends 'nail/SubPage.html' %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    {% block data %}
 </head>
 <body>
     <h1>Success</h1>
     <a href="{% url 'nail:profile' %}" class="button alt">back </a>
 </body>
+{% endblock %}
 </html>
+

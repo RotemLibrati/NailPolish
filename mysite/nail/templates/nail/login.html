@@ -1,9 +1,14 @@
 
 
-
+{% extends 'nail/SubPage.html' %}
+{% block title %}
     <h1>Login</h1>
+{% endblock %}
+{% block data %}
     <form method="POST">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit" >Login</button>
+        <button type="submit" class="btn btn-primary"> Login</button>
+        <a href="{% url 'nail:index' %}" class="btn btn-primary">back</a>
     </form>
+{% endblock %}

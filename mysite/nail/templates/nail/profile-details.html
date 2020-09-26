@@ -1,6 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
 
+<!DOCTYPE html>
+{% extends 'nail/SubPage.html' %}
+<html lang="en">
+{% block data %}
 <body>
 
     {% if not user.is_authenticated %}
@@ -17,6 +19,7 @@
         {% if up1.exist_meeting %}
             <div>Your next meeting at {{ up1.next_meeting }}</div>
         {% endif %}
+    {% block links %}
         <li><a href="{% url 'nail:meeting' %}">invite meeting</a><br>
         <li><a href="{% url 'nail:pictures' %}">Pictures</a><br>
         <li><a href="https://www.instagram.com/meital1998/">Instagram</a></li>
@@ -25,9 +28,12 @@
         {% if up1.is_admin == True %}
             <li><a href="{% url 'nail:meeting-admin' %}">Your meeting</a><br>
         {% endif %}
+        {% endblock %}
     {% endif %}
 
 
 
+
 </body>
+{% endblock %}
 </html>

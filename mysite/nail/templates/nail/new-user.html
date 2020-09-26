@@ -1,18 +1,24 @@
-
+{% extends 'nail/SubPage.html' %}
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title></title>
+    {% block title %}
     <h1>New User</h1>
+    {% endblock %}
 </head>
+{% block data %}
 <body>
 
     <form action="{% url 'nail:new-user' %} " method="POST">
         {% csrf_token %}
         {{ user_form.as_p }}
 
-    <button type="submit"> Submit </button>
+    <button type="submit" class="btn btn-primary btn-learn"> Submit </button>
     </form>
 
 </body>
+
+{% endblock %}
 </html>

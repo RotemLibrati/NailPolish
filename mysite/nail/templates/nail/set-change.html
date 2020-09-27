@@ -1,0 +1,14 @@
+{% extends 'nail/SubPage.html' %}
+    {% block data %}
+<form action="." method="post">
+        <h1>Hello {{ user.username }}</h1>
+        {% if up1.exist_meeting %}
+            <h3>For cancel your appointment </h3>
+                <div class="submit-row">
+                    <input type="submit" value="Change date" name="_make-unique" class="btn btn-primary btn-learn">
+                    <input type="submit" value="Cancel appointment" name="_make-unique1" class="btn btn-primary btn-learn">
+                </div>
+    {% csrf_token %}
+        {% endif %}
+    {% endblock %}
+    </form>

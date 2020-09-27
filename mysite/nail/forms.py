@@ -37,7 +37,7 @@ class UserForm(forms.ModelForm):
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
-        fields = ('address', 'age')
+        fields = ('address', 'age', 'phone_number')
 
 
 # class MeetingForm(forms.Form):

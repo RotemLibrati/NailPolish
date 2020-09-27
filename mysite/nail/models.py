@@ -11,6 +11,7 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
     age = models.IntegerField(default=0)
     address = models.CharField(max_length=100, default="")
+    phone_number = models.IntegerField(max_length=10)
     next_meeting = models.DateTimeField(default=datetime(2000,1,1))
     exist_meeting = models.BooleanField(default=False)
     last_met = models.DateTimeField(default=datetime(2000,1,1))

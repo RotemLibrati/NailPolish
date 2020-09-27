@@ -1,20 +1,26 @@
-
+{% extends 'nail/SubPage.html' %}
   </head>
 
 <body>
+{% block title %}
 <form action="." method="post">
 
     <p><h4>For change a meeting choose new date.</h4></p>
+
     <p><h4>For cancel press
-    <div class="submit-row">
-            <input type="submit" value="HERE" name="_make-unique">
-    </div>
+    {% endblock %}
+    {% block data %}
+
+
 </h4></p>
+
+
 
     {% csrf_token %}
     {{form.as_p}}
-    <input type="submit" value="Submit" />
+    <input type="submit" class="btn btn-primary" value="Submit" />
 </form>
 
 </body>
+{% endblock %}
 </html>

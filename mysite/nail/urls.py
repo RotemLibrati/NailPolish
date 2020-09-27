@@ -14,4 +14,5 @@ urlpatterns = [
     path('not-success/', views.not_success, name='not-success'),
     path('pictures/', views.pictures, name='pictures'),
     path('meeting-admin/', views.meeting_admin, name='meeting-admin'),
+    path('set-change/', views.set_change, name='set-change'),
 ]

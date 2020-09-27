@@ -57,16 +57,31 @@
 		<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>
 		<aside id="fh5co-aside" role="complementary" class="border js-fullheight">
 
-			<h1 id="fh5co-logo"><a href="index.html">Menu</a></h1>
+			<h1 id="fh5co-logo"><a href="{% url 'nail:index' %}">Menu</a></h1>
 			{% block links %}
 			<nav id="fh5co-main-menu" role="navigation">
 
 				<ul>
-					<li class="fh5co-active"><a href="index.html">Home</a></li>
-					<li><a href="blog.html">Blog</a></li>
+
+					{% if user.is_authenticated %}
+						<li><a href="{% url 'nail:set-change' %}">Set/Change an appointment</a></li>
+					{% endif %}
+					{% if up1.is_admin == True %}
+            			<li><a href="{% url 'nail:meeting-admin' %}">Your meeting</a><br>
+        			{% endif %}
+					{% if not user.is_authenticated %}
+						<li><a href="https://www.instagram.com/p/B7IUvMvBgi7/">Instagram</a></li>
+
+					 {% endif %}
+					<li><a href="{% url 'nail:profile' %}">Profile</a></li>
 					<li><a href="{% url 'nail:pictures' %}">Pictures</a></li>
-					<li><a href="https://www.instagram.com/p/B7IUvMvBgi7/">Instagram</a></li>
-					<li><a href="{% url 'nail:index' %}">Logout</a></li>
+					<li><a href="{% url 'nail:pictures' %}">Service</a></li>
+					<li><a href="{% url 'nail:pictures' %}">Contact</a></li>
+					{% if user.is_authenticated %}
+						<li><a href="{% url 'nail:logout' %}">Logout</a></li>
+					{% endif %}
+
+
 				</ul>
 
 			</nav>

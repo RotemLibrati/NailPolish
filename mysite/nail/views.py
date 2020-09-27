@@ -67,7 +67,7 @@ def new_profile(request, username):
         if form.is_valid():
             post_save.connect(attach_user, sender=UserProfile)
             form.save()
-            return render(request, 'nail/profile-details.html')
+            return render(request, 'nail/index.html')
     else:
         user = User.objects.get(username=username)
         form = ProfileForm()
@@ -109,12 +109,6 @@ def meeting(request):
             year = form.cleaned_data.get('year')
             hour = form.cleaned_data.get('hour')
             up1 = UserProfile.objects.get(user=request.user)
-            if "_make-unique" in request.POST:
-                print(up1.exist_meeting)
-                up1.exist_meeting = False
-                up1.save()
-                meet = Meeting.objects.filter(user=up1).delete()
-                return render(request, 'nail/success.html')
             if month == 2 and (day == 29 or day == 30 or day == 31):
                 orderly = False
                 return render(request, 'nail/not-success.html')
@@ -165,6 +159,28 @@ def pictures(request):
 def meeting_admin(request):
     user = request.user
     meet = (Meeting.objects.all())
-    print(meet)
     context = {'user': user, 'meet': meet}
     return render(request, 'nail/meeting-admin.html', context)
+
+def set_change(request):
+    user = request.user
+    up1 = UserProfile.objects.get(user=user)
+    if up1.exist_meeting:
+        if "_make-unique1" in request.POST:
+            up1.exist_meeting = False
+            up1.save()
+            meet = Meeting.objects.filter(user=up1).delete()
+            return render(request, 'nail/success.html')
+        elif "_make-unique" in request.POST:
+            up1.exist_meeting = False
+            up1.save()
+            meet = Meeting.objects.filter(user=up1).delete()
+            form = MeetingForm()
+            context = {'form': form}
+            return HttpResponseRedirect(reverse('nail:meeting'), context)
+    else:
+        form = MeetingForm()
+        context = {'form': form}
+        return HttpResponseRedirect(reverse('nail:meeting'), context)
+    context2 = {"user": user, 'up1': up1}
+    return render(request, 'nail/set-change.html', context2)

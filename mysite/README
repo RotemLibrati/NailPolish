@@ -3,3 +3,6 @@ py manage.py migrate --fake-initial
         {% if user.next_meeting %}
             <div>{{ user.first_name }}</div>
 class="btn btn-primary"
+
+<div><a href="{% url 'nail:login' %}" class="btn btn-primary btn-demo popup-vimeo">Login</a>
+        <a href="{% url 'nail:new-user' %}" class="btn btn-primary btn-learn" >Registration</a>

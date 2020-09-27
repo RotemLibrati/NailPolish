@@ -9,6 +9,6 @@
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit" class="btn btn-primary"> Login</button>
-        <a href="{% url 'nail:index' %}" class="btn btn-primary">back</a>
+        <a href="{% url 'nail:index' %}" class="btn btn-primary btn-learn">back</a>
     </form>
 {% endblock %}

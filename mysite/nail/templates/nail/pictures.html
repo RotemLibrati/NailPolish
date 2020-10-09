@@ -1,5 +1,6 @@
-<!DOCTYPE html>
+
 <html lang="en">
+
 <head>
   <title>Bootstrap Example</title>
   <meta charset="utf-8">
@@ -11,8 +12,6 @@
 <body>
 
 <div class="container">
-  <h2>Image Gallery</h2>
-
   <div class="row">
     <div class="col-md-4">
       <div class="thumbnail">
@@ -98,10 +97,10 @@
     </div>
 </div>
     {% if not user.is_authenticated %}
-<a href="{% url 'nail:index' %}" class="button alt">back </a>
+<a href="{% url 'nail:index' %}" class="btn btn-primary btn-learn">back</a>
   {% endif %}
   {% if user.is_authenticated %}
-<a href="{% url 'nail:profile' %}" class="button alt">back </a>
+<a href="{% url 'nail:index' %}" class="btn btn-primary btn-learn">back</a>
   {% endif %}
 </body>
 </html>

@@ -184,3 +184,11 @@ def set_change(request):
         return HttpResponseRedirect(reverse('nail:meeting'), context)
     context2 = {"user": user, 'up1': up1}
     return render(request, 'nail/set-change.html', context2)
+
+
+def about(request):
+    return render(request, 'nail/about.html')
+
+
+def service(request):
+    return render(request, 'nail/service.html')

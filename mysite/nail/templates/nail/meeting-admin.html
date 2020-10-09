@@ -1,13 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    {% for meeting in meet %}
-        <div>{{ meeting.date }} {{ meeting.user }}</div>
-    {% endfor %}
-</head>
-<body>
 
-</body>
-</html>
+{% extends 'nail/SubPage.html' %}
+
+
+{% block data %}
+<h1>Your appointment</h1>
+    {% for meeting in meet %}
+       <h2> <div>{{ meeting.date }} {{ meeting.user }}</div></h2>
+    {% endfor %}
+
+{% endblock %}
+

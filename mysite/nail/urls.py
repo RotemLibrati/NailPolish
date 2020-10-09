@@ -15,4 +15,6 @@ urlpatterns = [
     path('pictures/', views.pictures, name='pictures'),
     path('meeting-admin/', views.meeting_admin, name='meeting-admin'),
     path('set-change/', views.set_change, name='set-change'),
+    path('about/', views.about, name='about'),
+    path('service/', views.service, name='service'),
 ]

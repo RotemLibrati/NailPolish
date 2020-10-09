@@ -1,5 +1,6 @@
-
+{% extends 'nail/SubPage.html' %}
 <head>
+    {%block data %}
     <meta charset="UTF-8">
     <title></title>
 </head>
@@ -7,6 +8,9 @@
     <form action="{% url 'nail:new-profile' user.username %}" method="POST">
   {% csrf_token %}
   {{ form.as_p }}
-  <button type="submit">Finish registration</button>
+  <button type="submit" class="btn btn-primary">Finish registration</button>
+        <a href="{% url 'nail:new-user' %}" class="btn btn-primary btn-learn">back</a>
 </form>
+
+{% endblock %}
 

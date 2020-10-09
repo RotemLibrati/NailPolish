@@ -40,10 +40,6 @@ class ProfileForm(forms.ModelForm):
         fields = ('address', 'age', 'phone_number')
 
 
-# class MeetingForm(forms.Form):
-#     date = forms.DateField(label='Enter Date')
-
-
 
 class CompleteUserForm(UserCreationForm):  # create user - django
     class Meta:

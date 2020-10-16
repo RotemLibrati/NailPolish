@@ -1,6 +1,11 @@
 
 
 <!DOCTYPE html>
+<style type="text/css">
+	#fh5co-page{
+		background: GhostWhite;
+	}
+</style>
 {% load static %}
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -54,12 +59,11 @@
 	<body>
 
 	<div id="fh5co-page">
-		<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>
 		<aside id="fh5co-aside" role="complementary" class="border js-fullheight">
 
 			<h1 id="fh5co-logo"><a href="{% url 'nail:index' %}">Menu</a></h1>
-			{% block links %}
-			<nav id="fh5co-main-menu" role="navigation">
+
+				<nav id="fh5co-main-menu" role="navigation">
 
 				<ul>
 
@@ -85,7 +89,7 @@
 				</ul>
 
 			</nav>
-{% endblock %}
+
 
 
 			<div class="fh5co-footer">
